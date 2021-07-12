@@ -9,6 +9,10 @@ pillow = "*"
 django-taggit = "*"
 django-summernote = "*"
 psycopg2 = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
 
 [dev-packages]
 autopep8 = "*"

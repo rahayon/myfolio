@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import django_heroku
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,7 +131,8 @@ STATICFILES_DIRS = [
     BASE_DIR  / 'static'
     ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+#Whitenoise
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 #Media File 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -141,6 +144,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #SummerNote
 X_FRAME_OPTIONS = 'SAMEORGIN'
+
+#Heroku Setting
+django_heroku.settings(locals())
 
 
 
