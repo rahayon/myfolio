@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        {% for post in posts %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+            
+            <img class="bd-placeholder-img" width="100%" height="100%" src="{{ post.imageURL }}" alt="{{ post.title }}" >
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>a{{ post.title }}</h1>
+                <p>{{ post.content|truncatewords:"20" }}</p>
+                <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing my-10">
+    <div class="row justify-content-center my-3">
+      <div class="col">
+        <h2 class="text-center">My Service</h2>
+      </div>
+    </div>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      {% for service in services %}
+      <div class="col-lg-4">
+       
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ service.imageURL }}" alt="{{ service.name }}">
+        <h2>{{ service.name}}</h2>
+        <p>{{service.short_description }}</p>
+        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      {% endfor %}
+      
+      
+    </div><!-- /.row -->
+
+<div class="container">
+  <div class="row justify-content-center my-3">
+    <div class="col">
+      <h2 class="text-center">My Recent Porjects</h2>
+    </div>
+  </div>
+</div>
+    <!-- START THE FEATURETTES -->
+  {% for project in projects %}
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 {% if forloop.counter == 2 %} order-md-2 {% endif %}">
+      <h2 class="featurette-heading"><a href="{{ project.project_url }}">{{ project.title }}</a></h2>
+      <p class="lead">{{ project.description }}</p>
+    </div>
+    <div class="col-md-5 {% if forloop.counter == 2 %} order-md-1 {% endif %}">
+      
+      <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ project.imageURL }}" alt="{{ project.title }}">
+    </div>
+  </div>
+  {% endfor %}
+
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+{% endblock main_content %}
